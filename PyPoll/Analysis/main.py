@@ -2,10 +2,10 @@
 import os
 import csv
 
+candidate_count = {}  
+
 # Path to collect data from the Resources folder
 csvpath = os.path.join('..', 'Resources', 'election_data.csv')
-
-candidate_count = {}  # move this line above 'with' statement?
 
 # Read in the CSV file
 with open(csvpath, 'r') as csvfile:
@@ -15,12 +15,12 @@ with open(csvpath, 'r') as csvfile:
     csv_header = next(csvreader)
     data = list(csvreader)
 
-# set total votes to value of zero outside of for loop
-total_votes = 0
+    # set total votes to value of zero outside of for loop
+    total_votes = 0
 
     # Loop through each row with  
     # https://www.w3schools.com/python/ref_func_enumerate.asp
-for row in data:
+for row in data: 
     enumerate(data)
 
     # add 1 to total votes
@@ -41,7 +41,7 @@ for row in data:
     results = ""
     for candidate in list(candidate_count.keys()):
         candidate_percentage = (float(candidate_count[candidate]) / total_votes) * 100
-        candidate_final = str(f"{candidate}: {round(candidate_percentage, 3)}% ({candidate_count[candidate]})")
+        candidate_final = str(f"{candidate}: {round(candidate_percentage, 2)}% ({candidate_count[candidate]})")
         results += candidate_final
         
     # determine the winner of the race by identifying person with most votes added to their count
@@ -51,14 +51,16 @@ for row in data:
 
 
 
-printout = (f'''Election Results
--------------------------
-Total Votes: {total_votes}
--------------------------
-{results}
--------------------------
-Winner: {winner}
--------------------------''')
+printout = (
+    "Election Results \n"
+    "------------------------- \n"
+    f"Total Votes: {total_votes} \n"
+    "------------------------- \n"
+    f"{results} \n"
+    "------------------------- \n"
+    f"Winner: {winner} \n"
+    "------------------------- \n"
+)
 
 # print to terminal
 print(printout)
